@@ -15,6 +15,7 @@ export default function App() {
         <Drawer.Screen name="Cart" component={Cart}/>
         <Drawer.Screen name="Inventory" component={Inventory}/>
         <Drawer.Screen name="Stats" component={Stats}/>
+        {/* <Drawer.Screen name="Ajustes" component={Config}/> */}
       </Drawer.Navigator>
     </NavigationContainer>
   );
