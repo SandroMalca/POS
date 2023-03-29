@@ -16,4 +16,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#bbb",
     height: "100%",
   },
+  cards:{
+    flex:1,
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent:'space-around',
+  }
 });

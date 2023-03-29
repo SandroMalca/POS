@@ -10,9 +10,9 @@ function Card({ data }: Props) {
   
   return (
     <View style={CardStyles.container}>
-      <Image source={{uri: data.image}} style={{width: 100, height: 100}}/>
-      <Text>{data.precio}</Text>
-      <Text>{data.name}</Text>
+      <Image source={{uri: data.image}} style={CardStyles.image}/>
+      <Text style={CardStyles.precio}>${data.precio}</Text>
+      <Text style={CardStyles.name}>{data.name}</Text>
     </View>
   );
 }
