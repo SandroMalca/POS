@@ -14,13 +14,15 @@ export const CardStyles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     margin: 5,
   },
   precio: {
     fontSize: 25,
     fontWeight: "bold",
   },
-  name: {},
+  name: {
+    textAlign:'center'
+  },
 });
