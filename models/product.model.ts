@@ -5,3 +5,10 @@ export interface IProduct {
   precio: number;
   image: string;
 }
+
+export interface IProductForm {
+  name: string;
+  categoria: string;
+  precio: number;
+  image: string | null;
+}

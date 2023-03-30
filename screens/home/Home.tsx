@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 import React, { useState } from "react";
 import { FAB } from "@rneui/themed";
 import { Card } from "../../components";
@@ -7,9 +7,9 @@ import { data } from "../../utils/data";
 import { ScrollView } from "react-native-gesture-handler";
 import { styles } from "./HomeStyles";
 import { ListItem } from "@rneui/base";
+import { Link, useNavigation } from "@react-navigation/native";
 
-function Home() {
-  const [visible, setVisible] = useState(true);
+function Home({navigation}:any) {
 
   const Icono = () => {
     return (
@@ -27,18 +27,18 @@ function Home() {
       <Text>Categorias/TECLADO</Text>
       <ScrollView style={styles.container}>
         <View style={styles.cards}>
-        {data.products.map((product: IProduct) => (
-          <Card data={product} key={`${product.id}-product`} />
-        ))}
+          {data.products.map((product: IProduct) => (
+            <Card data={product} key={`${product.id}-product`} />
+          ))}
         </View>
       </ScrollView>
-      <FAB
-        visible={visible}
-        icon={<Icono />}
-        style={styles.button}
-        color="black"
-        onPress={() => setVisible(!visible)}
-      />
+
+        <FAB
+          icon={<Icono />}
+          style={styles.button}
+          color="black"
+          onPress={()=>navigation.navigate('Cart')}
+        />
     </View>
   );
 }
