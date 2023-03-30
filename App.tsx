@@ -1,11 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-<<<<<<< HEAD
-import { Home, Cart, Inventory, Stats, Config} from './containers';
-
-=======
 import { Home, Cart, Inventory, Stats, Config } from './screens';
->>>>>>> 18425b4941b591dccbbbcba48c6afa786dbc8c32
 
 const Drawer = createDrawerNavigator()
 
