@@ -3,9 +3,9 @@ import React, {useState} from 'react'
 import { Icon } from '@rneui/base'
 // import * as ImagePicker from 'expo-image-picker';
 // import {Cloudinary} from 'cloudinary-react-native';
-import {addProductStyles}  from "../addProduct/addProductStyles";
+import {addProductStyles}  from "./addProductStyles";
 
-export default function addProduct() {
+export default function AddProduct() {
     const [name, setName] = useState('');
     const [precio, setPrecio] = useState('');
     const [cantidad, SetCantidad] = useState('');
