@@ -16,6 +16,32 @@ interface IMessage {
   message: string | Error;
 }
 
+interface IProductsResults {
+  products: IProduct[],
+  message?: Error,
+}
+
+const getProducts = async (): Promise<IProductsResults | undefined> => {
+  try {
+    const productsQuery = query(collection(db,"products"))
+    const querySnapshot = await getDocs(productsQuery)
+
+    if(querySnapshot){
+      const products = querySnapshot.docs.map((doc)=>{
+        return{
+          id: doc.id,
+          ...doc.data().productData
+        }
+      })
+      return{products}
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      return { products: [], message: error };
+    }
+  }
+}
+
 const createProduct = async (
   productData: IProductForm
 ): Promise<IMessage | undefined> => {
@@ -38,4 +64,4 @@ const updateProduct = async (id: string, productData: IProductForm) => {
   } catch (error) {}
 };
 
-export { createProduct };
+export { getProducts ,createProduct, updateProduct };
