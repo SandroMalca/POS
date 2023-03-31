@@ -10,9 +10,7 @@ import { Link, useNavigation } from "@react-navigation/native";
 import { useGetProducts } from "../../services/api/products";
 
 function Home({ navigation }: any) {
-  const { products, loading, error } = useGetProducts();
-
-  
+  //const { products, loading, error } = useGetProducts();
 
   const Icono = () => {
     return (

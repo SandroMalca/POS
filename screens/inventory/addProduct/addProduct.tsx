@@ -1,7 +1,7 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, Button, Alert } from 'react-native'
 import React, {useState} from 'react'
-import { Icon } from '@rneui/base'
 import {addProductStyles}  from "./addProductStyles";
+import {createProduct} from '../../../services/api/products'
 
 function AddProduct() {
     const [name, setName] = useState('');
@@ -9,45 +9,51 @@ function AddProduct() {
     const [cantidad, SetCantidad] = useState('');
     const [categoria, SetCategoria] = useState('');
     const [image, setImage] = useState(null);
+
+    const handleSubmit = () => {
+      
+    }
+
   return (
     <View style={addProductStyles.container}>
+
+
       <View style={addProductStyles.top}>
-        <Icon name='left'/>  
         <Text>Crear Producto</Text>
       </View>
       <View style={addProductStyles.cont2}>
-        <Icon name='ball'></Icon>
         <Text>Cantidad</Text>
         <TextInput placeholder='0'></TextInput>
       </View>
-      <View>
+      <View style={addProductStyles.fields}>
         <TextInput
              value={name}
              placeholder="Product Name"
-             style={addProductStyles.text}
+             style={addProductStyles.textinput}
              onChangeText={input => setName(input)}
         />
         <TextInput
              value={categoria}
-             placeholder="Product Name"
-             style={addProductStyles.text}
+             placeholder="Category"
+             style={addProductStyles.textinput}
              onChangeText={input => setName(input)}
         />
         <TextInput
              value={precio}
-             placeholder="Product Name"
-             style={addProductStyles.text}
+             placeholder="Price"
+             style={addProductStyles.textinput}
              onChangeText={input => setName(input)}
         />
         
         <TextInput
-             value={categoria}
-             placeholder="Categoria"
-             style={addProductStyles.text}
+             value={cantidad}
+             placeholder="Amount"
+             style={addProductStyles.textinput}
              onChangeText={input => setName(input)}
         />
         
       </View>
+      <Button title='Add' onPress={handleSubmit}/>
     </View>
   )
 }

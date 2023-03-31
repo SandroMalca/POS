@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import {AddProduct, EditProduct} from '../index'
+import {AddProduct, EditProduct} from './index'
 
 const Tab = createMaterialTopTabNavigator()
 

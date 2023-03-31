@@ -11,16 +11,16 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: APIKEY || "",
-  authDomain: AUTH_DOMAIN || "",
-  projectId: PROJECT_ID || "",
-  storageBucket: STORAGE_BUCKET || "",
-  messagingSenderId: MESSAGING_SENDER_ID || "",
-  appId: APP_ID || "",
+  apiKey: APIKEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 export { db };
