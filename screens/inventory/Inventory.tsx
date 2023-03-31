@@ -1,16 +1,14 @@
-import { useNavigation,Link } from "@react-navigation/native";
-import { Text, View,Button } from "react-native";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import {AddProduct, EditProduct} from '../index'
 
+const Tab = createMaterialTopTabNavigator()
 
-function Inventory({navigation}:any) {
-
-const navigate=useNavigation();
-
+function Inventory() {
   return (
-    <View>
-      <Text>Inventory</Text>
-      <Button title="Inventory" onPress={() => navigation.navigate('Cart')}></Button>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="AddProduct" component={AddProduct}/>
+      <Tab.Screen name="EditProduct" component={EditProduct}/>
+    </Tab.Navigator>
   );
 }
 

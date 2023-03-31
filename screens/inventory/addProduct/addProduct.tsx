@@ -1,11 +1,9 @@
 import { View, Text, TextInput } from 'react-native'
 import React, {useState} from 'react'
 import { Icon } from '@rneui/base'
-// import * as ImagePicker from 'expo-image-picker';
-// import {Cloudinary} from 'cloudinary-react-native';
 import {addProductStyles}  from "./addProductStyles";
 
-export default function AddProduct() {
+function AddProduct() {
     const [name, setName] = useState('');
     const [precio, setPrecio] = useState('');
     const [cantidad, SetCantidad] = useState('');
@@ -53,3 +51,5 @@ export default function AddProduct() {
     </View>
   )
 }
+
+export default AddProduct
