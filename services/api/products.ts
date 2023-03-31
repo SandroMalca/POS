@@ -8,38 +8,42 @@ import {
   getDoc,
   doc,
   deleteDoc,
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "../db/config/firebase";
 import { IProductForm, IProduct } from "../../models/index";
+import { useState, useEffect } from "react";
 
 interface IMessage {
   message: string | Error;
 }
 
 interface IProductsResults {
-  products: IProduct[],
-  message?: Error,
+  products: IProduct[];
+  message?: Error;
+
 }
 
-const getProducts = async (): Promise<IProductsResults | undefined> => {
-  try {
-    const productsQuery = query(collection(db,"products"))
-    const querySnapshot = await getDocs(productsQuery)
+function useGetProducts() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({});
 
-    if(querySnapshot){
-      const products = querySnapshot.docs.map((doc)=>{
-        return{
-          id: doc.id,
-          ...doc.data().productData
-        }
+  const productsRef = collection(db, "products")
+
+  useEffect(()=>{
+    setLoading(true)
+    getDocs(productsRef).then((snapshot) => {
+      let data = [] as IProduct[]
+      snapshot.docs.forEach((doc:any) => {
+        data.push({...doc.data(), id: doc.id})
       })
-      return{products}
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      return { products: [], message: error };
-    }
-  }
+      setProducts(data)
+    })
+    .catch(err => setError(err))
+  },[])
+
+  return {products, error, loading}
 }
 
 const createProduct = async (
@@ -64,4 +68,4 @@ const updateProduct = async (id: string, productData: IProductForm) => {
   } catch (error) {}
 };
 
-export { getProducts ,createProduct, updateProduct };
+export { useGetProducts, createProduct, updateProduct };

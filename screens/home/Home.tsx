@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { FAB } from "@rneui/themed";
 import { Card } from "../../components";
 import { IProduct } from "../../models/product.model";
-import { data } from "../../utils/data";
 import { ScrollView } from "react-native-gesture-handler";
 import { styles } from "./HomeStyles";
 import { ListItem } from "@rneui/base";
 import { Link, useNavigation } from "@react-navigation/native";
+import { useGetProducts } from "../../services/api/products";
 
-function Home({navigation}:any) {
+function Home({ navigation }: any) {
+  const { products, loading, error } = useGetProducts();
+
+  
 
   const Icono = () => {
     return (
@@ -26,19 +29,15 @@ function Home({navigation}:any) {
     <View>
       <Text>Categorias/TECLADO</Text>
       <ScrollView style={styles.container}>
-        <View style={styles.cards}>
-          {data.products.map((product: IProduct) => (
-            <Card data={product} key={`${product.id}-product`} />
-          ))}
-        </View>
+        <View style={styles.cards}></View>
       </ScrollView>
 
-        <FAB
-          icon={<Icono />}
-          style={styles.button}
-          color="black"
-          onPress={()=>navigation.navigate('Cart')}
-        />
+      <FAB
+        icon={<Icono />}
+        style={styles.button}
+        color="black"
+        onPress={() => navigation.navigate("Cart")}
+      />
     </View>
   );
 }
