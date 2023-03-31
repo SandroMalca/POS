@@ -1,61 +1,68 @@
-import { View, Text, TextInput, Button, Alert } from 'react-native'
-import React, {useState} from 'react'
-import {addProductStyles}  from "./addProductStyles";
-import {createProduct} from '../../../services/api/products'
+import { View, Text, TextInput, Button } from "react-native";
+import { useState } from "react";
+import { addProductStyles } from "./addProductStyles";
+import { createProduct } from "../../../services/api/products";
+import { createAlert } from "../../../components/index";
+import { IProductForm } from "../../../models";
 
 function AddProduct() {
-    const [name, setName] = useState('');
-    const [precio, setPrecio] = useState('');
-    const [cantidad, SetCantidad] = useState('');
-    const [categoria, SetCategoria] = useState('');
-    const [image, setImage] = useState(null);
+  const formInitialState = {
+    name: "",
+    price: "0",
+    category: "",
+    amount: "0",
+    image: "",
+  }
+  const [formData, setFormData] = useState<IProductForm>(formInitialState)
+  
+  const handleChange = (name: string, value: string) => {
+    setFormData({ ...formData, [name]: value });
+  };
 
-    const handleSubmit = () => {
-      
-    }
+  const handleSubmit = () => {
+    createAlert("Succes!", "Product created")
+    console.log(formData)
+    setFormData(formInitialState)
+  };
 
   return (
     <View style={addProductStyles.container}>
-
-
       <View style={addProductStyles.top}>
         <Text>Crear Producto</Text>
       </View>
       <View style={addProductStyles.cont2}>
         <Text>Cantidad</Text>
-        <TextInput placeholder='0'></TextInput>
+        <TextInput placeholder="0"></TextInput>
       </View>
       <View style={addProductStyles.fields}>
         <TextInput
-             value={name}
-             placeholder="Product Name"
-             style={addProductStyles.textinput}
-             onChangeText={input => setName(input)}
+          value={formData.name}
+          placeholder="Product Name"
+          style={addProductStyles.textinput}
+          onChangeText={(input) => handleChange("name",input)}
         />
         <TextInput
-             value={categoria}
-             placeholder="Category"
-             style={addProductStyles.textinput}
-             onChangeText={input => setName(input)}
+          value={formData.category}
+          placeholder="Category"
+          style={addProductStyles.textinput}
+          onChangeText={(input) => handleChange("category",input)}
         />
         <TextInput
-             value={precio}
-             placeholder="Price"
-             style={addProductStyles.textinput}
-             onChangeText={input => setName(input)}
+          value={formData.price}
+          placeholder="Price"
+          style={addProductStyles.textinput}
+          onChangeText={(input) => handleChange("price",input)}
         />
-        
         <TextInput
-             value={cantidad}
-             placeholder="Amount"
-             style={addProductStyles.textinput}
-             onChangeText={input => setName(input)}
+          value={formData.amount}
+          placeholder="Amount"
+          style={addProductStyles.textinput}
+          onChangeText={(input) => handleChange("amount",input)}
         />
-        
       </View>
-      <Button title='Add' onPress={handleSubmit}/>
+      <Button title="Add" onPress={handleSubmit} />
     </View>
-  )
+  );
 }
 
-export default AddProduct
+export default AddProduct;

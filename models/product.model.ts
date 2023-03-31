@@ -8,7 +8,8 @@ export interface IProduct {
 
 export interface IProductForm {
   name: string;
-  categoria: string;
-  precio: number;
+  category: string;
+  price: string;
+  amount: string;
   image: string | null;
 }
