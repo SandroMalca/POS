@@ -21,7 +21,6 @@ function Home({ navigation }: any) {
       />
     );
   };
-  products && console.log(products);
   
   return (
     <View>
