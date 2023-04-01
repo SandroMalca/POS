@@ -11,5 +11,5 @@ export interface IProductForm {
   category: string;
   price: string;
   amount: string;
-  image: string | null;
+  image: string;
 }

@@ -12,17 +12,19 @@ function AddProduct() {
     category: "",
     amount: "0",
     image: "",
-  }
-  const [formData, setFormData] = useState<IProductForm>(formInitialState)
-  
+  };
+  const [formData, setFormData] = useState<IProductForm>(formInitialState);
+
   const handleChange = (name: string, value: string) => {
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = () => {
-    createAlert("Succes!", "Product created")
-    console.log(formData)
-    setFormData(formInitialState)
+    createAlert("Succes!", "Product created");
+    createProduct(formData)
+      .then((res) => console.log(res?.message))
+      .catch((err) => console.log(err));
+    //setFormData(formInitialState);
   };
 
   return (
@@ -39,25 +41,31 @@ function AddProduct() {
           value={formData.name}
           placeholder="Product Name"
           style={addProductStyles.textinput}
-          onChangeText={(input) => handleChange("name",input)}
+          onChangeText={(input) => handleChange("name", input)}
         />
         <TextInput
           value={formData.category}
           placeholder="Category"
           style={addProductStyles.textinput}
-          onChangeText={(input) => handleChange("category",input)}
+          onChangeText={(input) => handleChange("category", input)}
         />
         <TextInput
           value={formData.price}
           placeholder="Price"
           style={addProductStyles.textinput}
-          onChangeText={(input) => handleChange("price",input)}
+          onChangeText={(input) => handleChange("price", input)}
         />
         <TextInput
           value={formData.amount}
           placeholder="Amount"
           style={addProductStyles.textinput}
-          onChangeText={(input) => handleChange("amount",input)}
+          onChangeText={(input) => handleChange("amount", input)}
+        />
+        <TextInput
+          value={formData.image}
+          placeholder="Image"
+          style={addProductStyles.textinput}
+          onChangeText={(input) => handleChange("image", input)}
         />
       </View>
       <Button title="Add" onPress={handleSubmit} />

@@ -50,9 +50,9 @@ const createProduct = async (
   productData: IProductForm
 ): Promise<IMessage | undefined> => {
   try {
-    await addDoc(collection(db, "users"), {
+    await addDoc(collection(db, "products"), {
       productData,
-    });
+    })
     return { message: "Product created!" };
   } catch (error) {
     if (error instanceof Error) {
