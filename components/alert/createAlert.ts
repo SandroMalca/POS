@@ -4,9 +4,9 @@ const createAlert = (title: string, message: string) =>
   Alert.alert(title, message, [
     {
       text: "Cancel",
-      onPress: () => console.log("Cancel Pressed"),
+      onPress: () => null,
       style: "cancel",
     },
-    { text: "OK", onPress: () => console.log("OK Pressed") },
+    { text: "OK", onPress: () => null },
   ]);
 export default createAlert;

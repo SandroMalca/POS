@@ -24,7 +24,7 @@ function AddProduct() {
     createProduct(formData)
       .then((res) => console.log(res?.message))
       .catch((err) => console.log(err));
-    //setFormData(formInitialState);
+    setFormData(formInitialState);
   };
 
   return (

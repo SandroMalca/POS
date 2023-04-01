@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, Image, Button } from "react-native";
-import React, { useState } from "react";
 import { FAB } from "@rneui/themed";
 import { Card } from "../../components";
 import { IProduct } from "../../models/product.model";
@@ -10,7 +9,7 @@ import { Link, useNavigation } from "@react-navigation/native";
 import { useGetProducts } from "../../services/api/products";
 
 function Home({ navigation }: any) {
-  //const { products, loading, error } = useGetProducts();
+  const { products, loading, error } = useGetProducts();
 
   const Icono = () => {
     return (
@@ -22,12 +21,17 @@ function Home({ navigation }: any) {
       />
     );
   };
-
+  products && console.log(products);
+  
   return (
     <View>
       <Text>Categorias/TECLADO</Text>
       <ScrollView style={styles.container}>
-        <View style={styles.cards}></View>
+        <View style={styles.cards}>
+          {products && products.map((product: IProduct) => (
+            <Card data={product} key={product.id}/>
+          ))}
+        </View>
       </ScrollView>
 
       <FAB
