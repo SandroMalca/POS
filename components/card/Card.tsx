@@ -11,7 +11,6 @@ function Card({ data }: Props) {
   return (
     <View style={CardStyles.container}>
       <Image source={{uri: data.image}} style={CardStyles.image}/>
-      <Text>{data.price}</Text>
       <Text style={CardStyles.precio}>${data.price}</Text>
       <Text style={CardStyles.name}>{data.name}</Text>
     </View>
