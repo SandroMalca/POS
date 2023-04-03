@@ -1,15 +1,27 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { Text, View, Image } from "react-native";
+import {useEffect} from 'react'
+import { useSelector, useDispatch } from "react-redux";
 import { FAB } from "@rneui/themed";
 import { Card } from "../../components";
 import { IProduct } from "../../models/product.model";
 import { ScrollView } from "react-native-gesture-handler";
 import { styles } from "./HomeStyles";
-import { ListItem } from "@rneui/base";
-import { Link, useNavigation } from "@react-navigation/native";
 import { useGetProducts } from "../../services/api/products";
+import {setAllProducts, IproductsState} from '../../redux/slices/productsSlices'
+
+type ProductsState = {
+  products: IproductsState
+}
 
 function Home({ navigation }: any) {
   const { products, loading, error } = useGetProducts();
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+  products && dispatch(setAllProducts(products))  
+  },[products])
+
+  const data = useSelector((state:ProductsState) => state.products.filteredProducts)
 
   const Icono = () => {
     return (
@@ -21,13 +33,14 @@ function Home({ navigation }: any) {
       />
     );
   };
-  
+
+
   return (
     <View>
       <Text>Categorias/TECLADO</Text>
       <ScrollView style={styles.container}>
         <View style={styles.cards}>
-          {products && products.map((product: IProduct) => (
+          {data && data.map((product: IProduct) => (
             <Card data={product} key={product.id}/>
           ))}
         </View>

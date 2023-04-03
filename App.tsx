@@ -1,14 +1,16 @@
-import {Text} from 'react-native'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home, Cart, Inventory, Stats, Config } from './screens';
+import {Provider} from 'react-redux'
+import store from './redux/store'
 
 const Drawer = createDrawerNavigator()
 
 export default function App() {
 
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
       <Drawer.Navigator>
         <Drawer.Screen name="Home" component={Home}/>
         <Drawer.Screen name="Cart" component={Cart}/>
@@ -17,5 +19,6 @@ export default function App() {
         <Drawer.Screen name="Profile" component={Config}/>
       </Drawer.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }

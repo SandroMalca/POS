@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../../models";
 
-interface IproductsState {
+export interface IproductsState {
   products: IProduct[];
   filteredProducts: IProduct[];
   selectedCategory: string;
@@ -38,7 +38,7 @@ export const productsSlice = createSlice({
         };
       } else {
         let newArray = state.products.filter(
-          (item: IProduct) => item.categoria === state.selectedCategory
+          (item: IProduct) => item.category === state.selectedCategory
         );
         return {
           ...state,
