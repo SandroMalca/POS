@@ -8,10 +8,11 @@ import {
   getDoc,
   doc,
   deleteDoc,
+  updateDoc,
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../db/config/firebase";
-import { IProductForm, IProduct } from "../../models/index";
+import { IProductForm, IProduct, ICartItem } from "../../models/index";
 import { useState, useEffect } from "react";
 
 interface IMessage {
@@ -21,7 +22,6 @@ interface IMessage {
 interface IProductsResults {
   products: IProduct[];
   message?: Error;
-
 }
 
 function useGetProducts() {
@@ -29,21 +29,22 @@ function useGetProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({});
 
-  const productsRef = collection(db, "products")
+  const productsRef = collection(db, "products");
 
-  useEffect(()=>{
-    setLoading(true)
-    getDocs(productsRef).then((snapshot) => {
-      let data = [] as IProduct[]
-      snapshot.docs.forEach((doc:any) => {
-        data.push({...doc.data().productData, id: doc.id})
+  useEffect(() => {
+    setLoading(true);
+    getDocs(productsRef)
+      .then((snapshot) => {
+        let data = [] as IProduct[];
+        snapshot.docs.forEach((doc: any) => {
+          data.push({ ...doc.data().productData, id: doc.id });
+        });
+        setProducts(data);
       })
-      setProducts(data)
-    })
-    .catch(err => setError(err))
-  },[])
+      .catch((err) => setError(err));
+  }, []);
 
-  return {products, error, loading}
+  return { products, error, loading };
 }
 
 const createProduct = async (
@@ -52,7 +53,7 @@ const createProduct = async (
   try {
     await addDoc(collection(db, "products"), {
       productData,
-    })
+    });
     return { message: "Product created!" };
   } catch (error) {
     if (error instanceof Error) {
@@ -66,6 +67,16 @@ const updateProduct = async (id: string, productData: IProductForm) => {
   try {
     await setDoc(productRef, productData);
   } catch (error) {}
+};
+
+type updates = {
+  id: string,
+  amount: string
+}
+
+const updateProductsAmount = async (updates: updates[]) => {
+
+  
 };
 
 export { useGetProducts, createProduct, updateProduct };

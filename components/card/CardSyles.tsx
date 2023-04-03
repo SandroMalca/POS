@@ -25,4 +25,7 @@ export const CardStyles = StyleSheet.create({
   name: {
     textAlign:'center'
   },
+  amount:{
+    
+  },
 });

@@ -13,6 +13,7 @@ function Card({ data }: Props) {
       <Image source={{uri: data.image}} style={CardStyles.image}/>
       <Text style={CardStyles.precio}>${data.price}</Text>
       <Text style={CardStyles.name}>{data.name}</Text>
+      <Text style={CardStyles.amount}>amount: {data.amount}</Text>
     </View>
   );
 }
